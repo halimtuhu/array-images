@@ -1,6 +1,11 @@
 # Laravel Nova Field - Array Images
 A laravel nova field that will let you save your uploaded images path to your database in array format.
 
+# Installation
+```
+composer require halimtuhu/array-images
+```
+
 # Usage
 Create array images just call `Halimtuhu\ArrayImages\ArrayImages` class and use `make` static method to create a field.
 ```
