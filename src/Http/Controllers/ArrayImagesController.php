@@ -2,10 +2,10 @@
 namespace Halimtuhu\ArrayImages\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
-class ArrayImagesController extends Controller
+class ArrayImagesController extends BaseController
 {
     public function index(Request $request)
     {
