@@ -36,6 +36,25 @@ That will create a field with name `Images`. Stored data will look like this.
 }]
 ```
 
+# Available Methods
+### Disk
+Specify disk target for uploaded images.
+```
+ArrayImages::make('Images', 'images')
+    ->disk('public'),
+```
+If not specified then the default disk will be used.
+
+### Path
+Specify target path for uploaded images.
+```
+ArrayImages::make('Images', 'images)
+    ->disk('public')
+    ->path('images'),
+```
+If not specified then default path on selected disk will be used.
+
+
 # Notes
 - make sure you have specified correct `APP_URL` on your application
 - make sure you have specified default `FILESYSTEM_DRIVER` on your application
