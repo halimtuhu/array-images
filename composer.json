@@ -1,9 +1,11 @@
 {
     "name": "halimtuhu/array-images",
-    "description": "A Laravel Nova field.",
+    "description": "A Laravel Nova field for distribute your images as array of object.",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "images",
+        "array"
     ],
     "license": "MIT",
     "require": {

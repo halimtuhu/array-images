@@ -13,6 +13,7 @@
                 type="file"
                 ref="add_image"
                 @change="fileSelected"
+                multiple
             />
             <button
                 type="button"
@@ -64,43 +65,52 @@ export default {
          * Selected file event trigger
          */
         fileSelected(event) {
-            var app = this
-            const fd = new FormData()
-            fd.append('image', event.target.files[0], event.target.files[0].name)
+            var app = this;
+            const fd = new FormData();
+            
+            var imageCount = event.target.files.length;
+            var images = [];
+            for (var i = 0; i < imageCount; i++) {
+                fd.append('images[]', event.target.files[i]);
+            }
+            fd.append('disk', this.field.disk);
+            fd.append('path', this.field.path);
 
             axios.post('/nova-vendor/array-images/upload', fd)
                 .then(res => {
-                    app.images.push(res.data)
+                    for (var i = 0; i < res.data.length; i++) {
+                        app.images.push(res.data[i]);
+                    }
                     app.value = JSON.stringify(app.images)
-                })
+                });
         },
 
         deleteImage(index) {
-            axios.delete('/nova-vendor/array-images/delete/'+this.images[index].name)
-            this.images.splice(index, 1)
-            this.value = JSON.stringify(this.images)
+            axios.delete('/nova-vendor/array-images/delete/'+this.images[index].name);
+            this.images.splice(index, 1);
+            this.value = JSON.stringify(this.images);
         },
 
         /*
          * Set the initial, internal value for the field.
          */
         setInitialValue() {
-            this.value = this.field.value || ''
-            this.images = JSON.parse(this.field.value) || []
+            this.value = this.field.value || '';
+            this.images = JSON.parse(this.field.value) || [];
         },
 
         /**
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-            formData.append(this.field.attribute, this.value || '')
+            formData.append(this.field.attribute, this.value || '');
         },
 
         /**
          * Update the field's internal value.
          */
         handleChange(value) {
-            this.value = value
+            this.value = value;
         },
     },
 }
