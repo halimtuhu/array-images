@@ -26,7 +26,7 @@ class FieldController extends BaseController
                 ->putFile($path, $image);
 
             $data[] = [
-                'image' => $image->getClientOriginalName(),
+                'image' => $savedImage,
                 'url' => Storage::url($savedImage)
             ];
         }
