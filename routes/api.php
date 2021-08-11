@@ -4,4 +4,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Halimtuhu\ArrayImages\FieldController@index');
 Route::post('/upload', 'Halimtuhu\ArrayImages\FieldController@upload');
-Route::delete('/delete/{image}', 'Halimtuhu\ArrayImages\FieldController@delete');
+Route::delete('/delete/{saved_path}', 'Halimtuhu\ArrayImages\FieldController@delete')
+    ->where('saved_path', '(.*)');

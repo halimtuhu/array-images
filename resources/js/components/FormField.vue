@@ -86,9 +86,14 @@ export default {
         },
 
         deleteImage(index) {
-            axios.delete('/nova-vendor/array-images/delete/'+this.images[index].name);
-            this.images.splice(index, 1);
-            this.value = JSON.stringify(this.images);
+            const { saved_path } = this.images[index]
+            const params = { disk: this.field.disk }
+            axios.delete('/nova-vendor/array-images/delete/' + encodeURIComponent(saved_path), { params })
+              .then(() => {
+                this.images.splice(index, 1);
+                this.value = JSON.stringify(this.images);
+              })
+              .catch(console.warn)
         },
 
         /*
