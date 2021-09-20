@@ -38,4 +38,19 @@ class ArrayImages extends Field
             'path' => $path
         ]);
     }
+
+    /**
+     * Resize the images
+     *
+     * @param int|null $width
+     * @param int|null $height
+     * @param bool $aspectRatio
+     * @return ArrayImages
+     */
+    public function resize(int $width = null, int $height = null, bool $aspectRatio = false)
+    {
+        return $this->withMeta([
+            'resize' => "$width*$height:$aspectRatio"
+        ]);
+    }
 }
